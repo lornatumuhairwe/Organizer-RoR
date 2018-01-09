@@ -1,11 +1,10 @@
-<div class="mdl-cell mdl-cell--4-col mdl-cell--3-offset">
-  <div class="demo-card-wide mdl-card mdl-shadow--2dp">
-    <div class="mdl-card__title">
-      <h2 class="mdl-card__title-text">category 1</h2>
-    </div>
+<% @categories.each do |category| %>
+<div class="mdl-card mdl-shadow--2dp">
+  <div class="mdl-card__title">
+      <h2 class="mdl-card__title-text"><%= category.title %></h2>
+  </div>
     <div class="mdl-card__supporting-text">
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-      Mauris sagittis pellentesque lacus eleifend lacinia...
+      <%= category.description %>
     </div>
     <div class="mdl-card__actions mdl-card--border">
       <!-- Colored icon button -->
@@ -17,4 +16,4 @@
       </button>
     </div>
   </div>
-</div>
+  <% end %>
