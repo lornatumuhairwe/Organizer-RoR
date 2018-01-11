@@ -23,4 +23,12 @@ RSpec.describe StaticPagesController, type: :controller do
     end
   end
 
+  describe "GET #root" do
+    it "returns http success" do
+      expect(get: root_url).to route_to(
+        controller: "static_pages",
+        action: "index" )
+    end
+  end
+
 end

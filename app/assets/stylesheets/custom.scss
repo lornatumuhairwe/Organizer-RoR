@@ -1,1 +1,69 @@
 @import "material";
+
+body {
+  margin: 0;
+}
+
+.organiza-header {
+  background-color: #FFF;
+
+  .mdl-layout__title {
+    color: #6ab344;
+  }
+
+  .mdl-navigation__link {
+    color: #757575;
+    font-weight: 700;
+    font-size: 14px;
+  }
+
+}
+
+.mdl-layout__drawer-button {
+  background: transparent;
+  color: #767777;
+}
+
+.organiza-drawer {
+  border-right: none;
+
+  .mdl-navigation__link {
+    font-size: 14px;
+    color: #757575;
+  }
+
+  span.mdl-layout__title {
+    color: #8bc34a;
+  }
+}
+
+.organiza-background {
+  background: #f3f3f3;
+}
+
+.organiza-index-font {
+  font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+  line-height: 1;
+  color: #767777;
+  font-weight: 500;
+}
+
+.organiza-button {
+  background-color: #8bc34a;
+}
+
+.organiza-card {
+  float: left;
+  margin: 10px;
+}
+
+.organiza-add-category-button {
+  background-color: #8bc34a;
+  color: #FFF;
+  margin: 0 auto;
+}
+
+.add-category-form {
+  display: flex;
+  align-items: center;
+}
