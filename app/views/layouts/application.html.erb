@@ -29,6 +29,9 @@
         </nav>
       </div>
       <main class="organiza-background mdl-layout__content">
+        <% flash.each do |message_type, message| %>
+            <div><%= message %></div>
+        <% end %>
         <%= yield %>
       </main>
     </div>

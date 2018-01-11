@@ -12,19 +12,38 @@ class CategoriesController < ApplicationController
   end
 
   def create
-    @category = Category.new(new_category_params)
+    @category = Category.new(category_params)
     if @category.save
       flash[:success] = 'Category created successfully'
-      redirect_to root_url
+      redirect_to @category
     else
-      flash[:success] = 'Category creation failed'
-      redirect_to root_url
+      flash.now[:success] = 'Category creation failed'
+      @category = Category.new
+      @categories = []
+      render 'index'
     end
+  end
+
+  def edit
+    @category = Category.find(params[:id])
+  end
+
+  def update
+    @category = Category.find(params[:id])
+    if @category.update_attributes(category_params)
+      redirect_to @category
+    else
+      render 'edit'
+    end
+  end
+
+  def destroy
+    @category = Category.find(params[:id]).destroy
   end
 
   private
 
-  def new_category_params
+  def category_params
     params.require(:category).permit(:title, :description)
   end
 end
