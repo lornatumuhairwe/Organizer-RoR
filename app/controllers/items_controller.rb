@@ -14,6 +14,20 @@ class ItemsController < ApplicationController
     end
   end
 
+  def update
+    category = Category.find(params[:category_id])
+    @item = category.items.find(params[:id])
+    @item.update(items_params)
+    redirect_to category_items_path(category)
+  end
+
+  def destroy
+    category = Category.find(params[:category_id])
+    @item = category.items.find(params[:id])
+    @item.destroy
+    redirect_to category_items_path(category)
+  end
+
   private
 
   def items_params
