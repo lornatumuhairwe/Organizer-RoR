@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'items/index'
+
   root 'static_pages#index'
 
   get 'static_pages/index'
