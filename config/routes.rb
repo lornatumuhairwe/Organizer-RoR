@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'items/index'
-
   root 'static_pages#index'
 
   get 'static_pages/index'
@@ -10,7 +8,9 @@ Rails.application.routes.draw do
 
   get 'static_pages/about'
 
-  resources :categories
+  resources :categories do
+    resources :items
+  end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

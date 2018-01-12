@@ -1,3 +1,47 @@
-<h1>Categories <%= @category.id %></h1>
-<p><%= @category.title %></p>
-<%= @category.description %>
+
+
+<div class="mdl-grid">
+  <div class="mdl-cell mdl-cell--4-col">
+    <h1><%= @category.title %></h1>
+    <p><%= @category.description %></p>
+    <h5>Add item to <%= @category.title %></h5>
+    <div class="add-category-form">
+      <%= form_for(:category_item, url: category_items_url(@category)) do |f| %>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+          <%= f.label :title, class: "mdl-textfield__label" %>
+          <%= f.text_field :title, class: "mdl-textfield__input" %>
+        </div>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+          <%= f.label :description, class: "mdl-textfield__label" %>
+          <%= f.text_area :description, rows: "3", class: "mdl-textfield__input" %>
+        </div>
+        <%= f.submit "Create item", class: "organiza-button mdl-button" %>
+      <% end %>
+      <button class="organiza-add-category-button mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect">
+        <i class="material-icons">arrow_forward</i>
+      </button>
+    </div>
+  </div>
+  <div class="mdl-cell mdl-cell--8-col">
+    <% @items.each do |item| %>
+      <div class="organiza-card mdl-card mdl-shadow--2dp">
+        <div class="mdl-card__title">
+          <h2 class="mdl-card__title-text"><%= item.title %></h2>
+        </div>
+        <div class="mdl-card__supporting-text">
+          <%= item.description %>
+        </div>
+        <div class="mdl-card__actions mdl-card--border">
+          <!-- Colored icon button -->
+          <button class="mdl-button mdl-js-button mdl-button--icon mdl-color--green mdl-color-text--white">
+            <i class="material-icons">edit</i>
+          </button>
+          <li class="mdl-button mdl-js-button mdl-button--icon mdl-color--red mdl-color-text--white">
+            <i class="material-icons">delete</i>
+
+          </li>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
