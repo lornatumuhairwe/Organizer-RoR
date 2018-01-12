@@ -21,7 +21,7 @@ RSpec.describe ItemsController, type: :controller do
     end
 
     describe "PUT #update", type: :request do
-      before { put "/categories/#{@category.id}/items/#{@item.id}", params: { category_item: { title: 'item 2' }}}
+      before { put "/categories/#{@category.id}/items/#{@item.id}", params: { item: { title: 'item 2' }}}
       it 'updates existing item' do
         expect(@item.reload.title).to eq('item 2')
       end

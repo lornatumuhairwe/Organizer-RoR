@@ -14,23 +14,32 @@ class ItemsController < ApplicationController
     end
   end
 
+  def edit
+    @category = Category.find(params[:category_id])
+    @item = @category.items.find(params[:id])
+  end
+
   def update
-    category = Category.find(params[:category_id])
-    @item = category.items.find(params[:id])
-    @item.update(items_params)
-    redirect_to category_items_path(category)
+    @category = Category.find(params[:category_id])
+    @item = @category.items.find(params[:id])
+    @item.update_attributes(update_items_params)
+    redirect_to root_path
   end
 
   def destroy
     category = Category.find(params[:category_id])
     @item = category.items.find(params[:id])
     @item.destroy
-    redirect_to category_items_path(category)
+    redirect_to root_path
   end
 
   private
 
   def items_params
     params.require(:category_item).permit(:title, :description)
+  end
+
+  def update_items_params
+    params.require(:item).permit(:title, :description)
   end
 end
