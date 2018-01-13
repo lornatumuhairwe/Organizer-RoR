@@ -10,5 +10,10 @@ RSpec.describe Item, type: :model do
     it "is valid" do
       expect(@item.valid?).to be(true)
     end
+
+    it 'is invalid without a title' do
+      @item.title = ""
+      expect(@item.valid?).to be(false)
+    end
   end
 end

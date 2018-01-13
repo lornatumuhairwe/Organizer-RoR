@@ -7,10 +7,12 @@ class ItemsController < ApplicationController
     @item = category.items.build(items_params)
     if @item.save
       flash[:success] = 'Item added successfully'
-      redirect_to root_url
+      @items = category.items
+      redirect_to category_path(category)
     else
       flash[:success] = 'Failed'
-      redirect_to root_url
+      @items = category.items
+      redirect_to category_path(category)
     end
   end
 
@@ -23,14 +25,16 @@ class ItemsController < ApplicationController
     @category = Category.find(params[:category_id])
     @item = @category.items.find(params[:id])
     @item.update_attributes(update_items_params)
-    redirect_to root_path
+    @items = @category.items
+    redirect_to category_path(@category)
   end
 
   def destroy
     category = Category.find(params[:category_id])
     @item = category.items.find(params[:id])
     @item.destroy
-    redirect_to root_path
+    @items = category.items
+    redirect_to category_path(category)
   end
 
   private

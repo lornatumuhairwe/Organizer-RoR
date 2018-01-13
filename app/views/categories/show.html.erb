@@ -32,7 +32,9 @@
         <div class="mdl-card__actions mdl-card--border">
           <!-- Colored icon button -->
           <button class="mdl-button mdl-js-button mdl-button--icon mdl-color--green mdl-color-text--white">
-            <i class="material-icons">edit</i>
+            <i class="material-icons">
+              <%= link_to "edit", edit_category_item_path(@category, item) %>
+            </i>
           </button>
           <li class="mdl-button mdl-js-button mdl-button--icon mdl-color--red mdl-color-text--white">
             <i class="material-icons"><%= link_to "delete", category_item_url(@category, item), method: :delete,
