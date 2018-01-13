@@ -18,8 +18,15 @@
           <span class="mdl-layout__title">Organiza</span>
           <div class="mdl-layout-spacer"></div>
           <nav class="mdl-navigation">
-            <a href="/categories" class="mdl-navigation__link">Categories</a>
-            <a href="#" class="mdl-navigation__link">Login</a>
+            <% if user_signed_in? %>
+              Logged in as <strong><%= current_user.email %></strong>.
+              <a href="/categories" class="mdl-navigation__link">Categories</a>
+              <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> |
+              <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
+            <% else %>
+              <%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %> |
+              <%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>
+            <% end %>
           </nav>
         </div>
       </header>
@@ -33,6 +40,12 @@
       <main class="organiza-background mdl-layout__content">
         <% flash.each do |message_type, message| %>
             <div><%= message %></div>
+        <% end %>
+        <% if notice %>
+          <p class="notice"><%= notice %></p>
+        <% end %>
+        <% if alert %>
+          <p class="alert"><%= alert %></p>
         <% end %>
         <%= yield %>
       </main>
