@@ -22,20 +22,29 @@
     <% @categories.each do |category| %>
       <div class="organiza-card mdl-card mdl-shadow--2dp">
         <div class="mdl-card__title">
-          <h2 class="mdl-card__title-text"><%= category.title %></h2>
+          <h2 class="mdl-card__title-text">
+            <%= category.title %>
+          </h2>
         </div>
         <div class="mdl-card__supporting-text">
           <%= category.description %>
         </div>
         <div class="mdl-card__actions mdl-card--border">
           <!-- Colored icon button -->
-          <button class="mdl-button mdl-js-button mdl-button--icon mdl-color--green mdl-color-text--white">
-            <i class="material-icons">edit</i>
+          <button class="mdl-button mdl-js-button mdl-button--icon mdl-color--blue mdl-color-text--white">
+            <i class="material-icons">
+              <%= link_to "visibility", category_path(category) %>
+            </i>
           </button>
-          <li class="mdl-button mdl-js-button mdl-button--icon mdl-color--red mdl-color-text--white">
+          <button class="mdl-button mdl-js-button mdl-button--icon mdl-color--green mdl-color-text--white">
+            <i class="material-icons">
+              <%= link_to "edit", edit_category_path(category) %>
+            </i>
+          </button>
+          <button class="mdl-button mdl-js-button mdl-button--icon mdl-color--red mdl-color-text--white">
             <i class="material-icons"><%= link_to "delete", category, method: :delete,
                                                   data: { confirm: "You sure?" } %></i>
-          </li>
+          </button>
         </div>
       </div>
     <% end %>

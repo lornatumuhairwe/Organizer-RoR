@@ -20,7 +20,7 @@ class CategoriesController < ApplicationController
     else
       flash.now[:success] = 'Category creation failed'
       @category = Category.new
-      @categories = []
+      @categories = Category.all
       render 'index'
     end
   end
@@ -32,14 +32,19 @@ class CategoriesController < ApplicationController
   def update
     @category = Category.find(params[:id])
     if @category.update_attributes(category_params)
+      flash[:success] = "Update successful"
       redirect_to @category
     else
+      @category = Category.find(params[:id])
+      flash.now[:success] = "Update Failed"
       render 'edit'
     end
   end
 
   def destroy
     @category = Category.find(params[:id]).destroy
+    @categories = Category.all
+    redirect_to categories_path
   end
 
   private
