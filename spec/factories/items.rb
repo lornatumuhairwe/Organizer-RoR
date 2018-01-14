@@ -2,6 +2,6 @@ FactoryBot.define do
   factory :item do
     title "MyString"
     description "MyText"
-    category nil
+    category factory: :category
   end
 end

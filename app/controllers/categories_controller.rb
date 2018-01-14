@@ -1,11 +1,11 @@
 class CategoriesController < ApplicationController
   def show
-    @category = Category.find(params[:id])
+    @category = current_user.categories.find(params[:id])
     @items = @category.items
   end
 
   def index
-    @categories = Category.all
+    @categories = current_user.categories
     @category = Category.new
   end
 
@@ -13,7 +13,7 @@ class CategoriesController < ApplicationController
   end
 
   def create
-    @category = Category.new(category_params)
+    @category = current_user.categories.build(category_params)
     if @category.save
       flash[:success] = 'Category created successfully'
       redirect_to @category
@@ -26,11 +26,11 @@ class CategoriesController < ApplicationController
   end
 
   def edit
-    @category = Category.find(params[:id])
+    @category = current_user.categories.find(params[:id])
   end
 
   def update
-    @category = Category.find(params[:id])
+    @category = current_user.categories.find(params[:id])
     if @category.update_attributes(category_params)
       flash[:success] = "Update successful"
       redirect_to @category
@@ -42,7 +42,7 @@ class CategoriesController < ApplicationController
   end
 
   def destroy
-    @category = Category.find(params[:id]).destroy
+    @category = current_user.categories.find(params[:id]).destroy
     @categories = Category.all
     redirect_to categories_path
   end

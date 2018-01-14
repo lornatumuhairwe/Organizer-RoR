@@ -3,7 +3,9 @@ require 'rails_helper'
 RSpec.describe Category, type: :model do
   describe 'valid category objects' do
     before(:each) do
-      @category = Category.new(title: 'Test category', description: 'This is the test category')
+      @user = create(:user)
+      # @category = Category.new(title: 'Test category', description: 'This is the test category')
+      @category = @user.categories.create(title: 'Test category', description: 'This is the test category')
     end
 
     it "is valid" do

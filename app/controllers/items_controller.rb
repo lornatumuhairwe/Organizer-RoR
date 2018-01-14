@@ -3,7 +3,7 @@ class ItemsController < ApplicationController
   end
 
   def create
-    category = Category.find(params[:category_id])
+    category = current_user.categories.find(params[:category_id])
     @item = category.items.build(items_params)
     if @item.save
       flash[:success] = 'Item added successfully'
@@ -17,12 +17,12 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    @category = Category.find(params[:category_id])
+    @category = current_user.categories.find(params[:category_id])
     @item = @category.items.find(params[:id])
   end
 
   def update
-    @category = Category.find(params[:category_id])
+    @category = current_user.categories.find(params[:category_id])
     @item = @category.items.find(params[:id])
     @item.update_attributes(update_items_params)
     @items = @category.items
@@ -30,7 +30,7 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    category = Category.find(params[:category_id])
+    category = current_user.categories.find(params[:category_id])
     @item = category.items.find(params[:id])
     @item.destroy
     @items = category.items
