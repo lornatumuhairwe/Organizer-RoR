@@ -2,17 +2,19 @@ require 'rails_helper'
 
 RSpec.describe ItemsController, type: :controller do
 
-  describe "GET #index" do
-    it "returns http success" do
-      # get :index
-      # expect(response).to have_http_status(:success)
-    end
-  end
+  # describe "GET #index" do
+  #   it "returns http success" do
+  #     get :index
+  #     expect(response).to have_http_status(:success)
+  #   end
+  # end
 
   describe "POST #create", type: :request do
     before(:each) do
-      @category = create(:category)
+      @user = create(:user)
+      @category = @user.categories.create(title: 'Test category', description: 'Test description')
       @item = @category.items.create(title: 'Stuff', description: 'The ambigous things about my life')
+      sign_in @user
     end
     it "creates new items in a category" do
       expect {
