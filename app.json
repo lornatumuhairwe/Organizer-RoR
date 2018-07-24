@@ -7,7 +7,7 @@
       "required": true
     },
 
-    "RAKE_ENV": {
+    "RACK_ENV": {
       "required": true
     },
     "DATABASE_URL": {
