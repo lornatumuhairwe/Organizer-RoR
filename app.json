@@ -6,7 +6,6 @@
     "RAILS_ENV": {
       "required": true
     },
-
     "RACK_ENV": {
       "required": true
     },
